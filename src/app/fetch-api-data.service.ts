@@ -33,11 +33,22 @@ class BasicService {
   };
 
   // Using "any" instead of Response type to avoid error message for first parameter in map function
+  /**
+   * Callback function to extract response body from Http Response
+   *
+   * @param res Response from HttpRequest
+   * @returns Reponse body or nothing if response body is empty
+   */
   public extractResponseData(res: any): any {
     const body = res;
     return body || {};
   }
 
+  /**
+   * Create authentication header for Http requests
+   *
+   * @returns HttpHeaders to use in Http Requests
+   */
   public getAuthHeader = (): HttpHeaders => {
     const token = localStorage.getItem('token');
     return new HttpHeaders({ Authorization: 'Bearer ' + token });
@@ -164,6 +175,30 @@ export class DeleteUserService extends BasicService {
   public deleteUser(username: string): Observable<any> {
     return this.http
       .delete(apiUrl + 'users/' + username, { headers: this.getAuthHeader() })
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
+  }
+}
+
+@Injectable({
+  providedIn: 'root',
+})
+export class GetUserService extends BasicService {
+  public getUser(username: string): Observable<any> {
+    return this.http
+      .get(apiUrl + 'users/' + username, { headers: this.getAuthHeader() })
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
+  }
+}
+
+@Injectable({
+  providedIn: 'root',
+})
+export class GetUserFavoriteMoviesService extends BasicService {
+  public getUserFavoriteMovies(username: string): Observable<any> {
+    return this.http
+      .get(apiUrl + 'users/' + username + '/favoritemovies', {
+        headers: this.getAuthHeader(),
+      })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 }
