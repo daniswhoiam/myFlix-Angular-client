@@ -14,7 +14,7 @@ const apiUrl = 'https://daniswhoiam-myflix.herokuapp.com/';
 
 class BasicService {
   constructor(public http: HttpClient) {}
-  
+
   /**
    * Making handleError available to all classes in this module
    *
@@ -31,6 +31,17 @@ class BasicService {
     }
     return throwError('Something bad happened; please try again later.');
   };
+
+  // Using "any" instead of Response type to avoid error message for first parameter in map function
+  public extractResponseData(res: any): any {
+    const body = res;
+    return body || {};
+  }
+
+  public getAuthHeader = (): HttpHeaders => {
+    const token = localStorage.getItem('token');
+    return new HttpHeaders({ Authorization: 'Bearer ' + token });
+  };
 }
 
 @Injectable({
@@ -43,7 +54,7 @@ export class UserRegistrationService extends BasicService {
   public userRegistration(userDetails: any): Observable<any> {
     return this.http
       .post(apiUrl + 'users', userDetails)
-      .pipe(catchError(this.handleError));
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 }
 
@@ -54,7 +65,7 @@ export class UserLoginService extends BasicService {
   public UserLogin(loginDetails: any): Observable<any> {
     return this.http
       .post(apiUrl + 'login', loginDetails)
-      .pipe(catchError(this.handleError));
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 }
 
@@ -63,7 +74,9 @@ export class UserLoginService extends BasicService {
 })
 export class GetAllMoviesService extends BasicService {
   public getAllMovies(): Observable<any> {
-    return this.http.get(apiUrl + 'movies').pipe(catchError(this.handleError));
+    return this.http
+      .get(apiUrl + 'movies', { headers: this.getAuthHeader() })
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 }
 
@@ -73,8 +86,8 @@ export class GetAllMoviesService extends BasicService {
 export class GetMovieService extends BasicService {
   public getMovie(title: string): Observable<any> {
     return this.http
-      .get(apiUrl + 'movies/' + title)
-      .pipe(catchError(this.handleError));
+      .get(apiUrl + 'movies/' + title, { headers: this.getAuthHeader() })
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 }
 
@@ -84,8 +97,8 @@ export class GetMovieService extends BasicService {
 export class GetDirectorService extends BasicService {
   public getDirector(name: string): Observable<any> {
     return this.http
-      .get(apiUrl + 'directors/' + name)
-      .pipe(catchError(this.handleError));
+      .get(apiUrl + 'directors/' + name, { headers: this.getAuthHeader() })
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 }
 
@@ -95,8 +108,8 @@ export class GetDirectorService extends BasicService {
 export class GetGenreService extends BasicService {
   public getGenre(title: string): Observable<any> {
     return this.http
-      .get(apiUrl + 'genres/' + title)
-      .pipe(catchError(this.handleError));
+      .get(apiUrl + 'genres/' + title, { headers: this.getAuthHeader() })
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 }
 
@@ -106,8 +119,12 @@ export class GetGenreService extends BasicService {
 export class AddFavoriteMovieService extends BasicService {
   public addFavoriteMovie(username: string, movieId: string): Observable<any> {
     return this.http
-      .patch(apiUrl + 'users/' + username + 'movies/' + movieId, {})
-      .pipe(catchError(this.handleError));
+      .patch(
+        apiUrl + 'users/' + username + 'movies/' + movieId,
+        {},
+        { headers: this.getAuthHeader() }
+      )
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 }
 
@@ -120,8 +137,10 @@ export class DeleteFavoriteMovieService extends BasicService {
     movieId: string
   ): Observable<any> {
     return this.http
-      .delete(apiUrl + 'users/' + username + 'movies/' + movieId)
-      .pipe(catchError(this.handleError));
+      .delete(apiUrl + 'users/' + username + 'movies/' + movieId, {
+        headers: this.getAuthHeader(),
+      })
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 }
 
@@ -131,8 +150,10 @@ export class DeleteFavoriteMovieService extends BasicService {
 export class UpdateUserService extends BasicService {
   public updateUser(userDetails: any): Observable<any> {
     return this.http
-      .put(apiUrl + 'users/' + userDetails.username, userDetails)
-      .pipe(catchError(this.handleError));
+      .put(apiUrl + 'users/' + userDetails.username, userDetails, {
+        headers: this.getAuthHeader(),
+      })
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 }
 
@@ -142,7 +163,7 @@ export class UpdateUserService extends BasicService {
 export class DeleteUserService extends BasicService {
   public deleteUser(username: string): Observable<any> {
     return this.http
-      .delete(apiUrl + 'users/' + username)
-      .pipe(catchError(this.handleError));
+      .delete(apiUrl + 'users/' + username, { headers: this.getAuthHeader() })
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 }
