@@ -12,7 +12,10 @@ import { map } from 'rxjs/operators';
 
 const apiUrl = 'https://daniswhoiam-myflix.herokuapp.com/';
 
-class BasicService {
+@Injectable({
+  providedIn: 'root',
+})
+export class BasicService {
   constructor(public http: HttpClient) {}
 
   /**
@@ -73,7 +76,7 @@ export class UserRegistrationService extends BasicService {
   providedIn: 'root',
 })
 export class UserLoginService extends BasicService {
-  public UserLogin(loginDetails: any): Observable<any> {
+  public userLogin(loginDetails: any): Observable<any> {
     return this.http
       .post(apiUrl + 'login', loginDetails)
       .pipe(map(this.extractResponseData), catchError(this.handleError));
