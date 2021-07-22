@@ -31,12 +31,12 @@ export class UserRegistrationFormComponent implements OnInit {
       (result) => {
         // TODO Logic for successful user registration
         this.dialogRef.close();
-        this.snackBar.open(result, 'OK', {
+        this.snackBar.open('Your registration was successful!', 'OK', {
           duration: 2000,
         });
       },
       (result) => {
-        this.snackBar.open(result, 'OK', {
+        this.snackBar.open(result.data.error, 'OK', {
           duration: 2000,
         });
       }

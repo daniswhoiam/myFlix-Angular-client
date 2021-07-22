@@ -25,11 +25,17 @@ export class BasicService {
    * @returns throwError function
    */
   public handleError = (error: HttpErrorResponse): any => {
-    if (error.error instanceof ErrorEvent) {
+    if (error.error.message) {
+      if (error.error.info) {
+        console.error('Some error occured: ', error.error.info.message);
+        return throwError(error.error.info.message);
+      }
       console.error('Some error occured:', error.error.message);
+      return throwError(error.error.message);
     } else {
       console.error(
-        `Error Status code ${error.status}, ` + `Error body is: ${error.error}`
+        `Error Status code ${error.status}, ` +
+          `Error body is: ${JSON.stringify(error)}`
       );
     }
     return throwError('Something bad happened; please try again later.');

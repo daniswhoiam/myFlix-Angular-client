@@ -28,9 +28,10 @@ export class UserLoginFormComponent implements OnInit {
   loginUser(): void {
     this.apiCall.userLogin(this.loginData).subscribe(
       (result) => {
-        localStorage.setItem('user', JSON.stringify(result.data.user));
+        localStorage.setItem('user', JSON.stringify(result.user));
+        localStorage.setItem('token', result.token);
         this.dialogRef.close();
-        this.snackBar.open(result, 'OK', {
+        this.snackBar.open('Your login was successful!', 'OK', {
           duration: 2000,
         });
       },
@@ -42,3 +43,15 @@ export class UserLoginFormComponent implements OnInit {
     );
   }
 }
+
+const response = {
+  headers: { normalizedNames: {}, lazyUpdate: null, headers: {} },
+  status: 0,
+  statusText: 'Unknown Error',
+  url: 'https://daniswhoiam-myflix.herokuapp.com/login',
+  ok: false,
+  name: 'HttpErrorResponse',
+  message:
+    'Http failure response for https://daniswhoiam-myflix.herokuapp.com/login: 0 Unknown Error',
+  error: { isTrusted: true },
+};
