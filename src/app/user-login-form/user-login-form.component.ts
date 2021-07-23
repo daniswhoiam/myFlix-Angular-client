@@ -9,6 +9,9 @@ import { UserLoginService } from '../fetch-api-data.service';
 // For user notifications
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+// For routing
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-user-login-form',
   templateUrl: './user-login-form.component.html',
@@ -20,7 +23,8 @@ export class UserLoginFormComponent implements OnInit {
   constructor(
     public apiCall: UserLoginService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -34,6 +38,7 @@ export class UserLoginFormComponent implements OnInit {
         this.snackBar.open('Your login was successful!', 'OK', {
           duration: 2000,
         });
+        this.router.navigate(['movies']);
       },
       (result) => {
         this.snackBar.open(result, 'OK', {
@@ -43,15 +48,3 @@ export class UserLoginFormComponent implements OnInit {
     );
   }
 }
-
-const response = {
-  headers: { normalizedNames: {}, lazyUpdate: null, headers: {} },
-  status: 0,
-  statusText: 'Unknown Error',
-  url: 'https://daniswhoiam-myflix.herokuapp.com/login',
-  ok: false,
-  name: 'HttpErrorResponse',
-  message:
-    'Http failure response for https://daniswhoiam-myflix.herokuapp.com/login: 0 Unknown Error',
-  error: { isTrusted: true },
-};
