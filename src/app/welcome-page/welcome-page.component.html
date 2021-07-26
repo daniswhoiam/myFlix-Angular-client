@@ -1,22 +1,24 @@
 <div class="main-page">
-  <h1>Welcome to myFlix!</h1>
-  <button
-    mat-raised-button
-    (click)="openUserRegistrationDialog()"
-    style="margin-right: 10px"
-    color="primary"
-  >
-    Sign up
-  </button>
-  <button
-    mat-raised-button
-    (click)="openUserLoginDialog()"
-    color="primary"
-    style="margin-right: 10px"
-  >
-    Login
-  </button>
-  <button mat-raised-button color="primary" (click)="openMoviesDialog()">
-    All Movies
-  </button>
+  <div class="logo-container">
+    <img src="../../assets/img/full_logo.png" alt="myFlix logo" />
+    <h1>Your personal movie database!</h1>
+  </div>
+  <div class="button-container">
+    <button
+      mat-raised-button
+      (click)="openUserLoginDialog()"
+      color="primary"
+      style="margin-right: 10px"
+    >
+      Login
+    </button>
+    <button
+      mat-raised-button
+      (click)="openUserRegistrationDialog()"
+      style="margin-right: 10px"
+      color="accent"
+    >
+      Sign up
+    </button>
+  </div>
 </div>

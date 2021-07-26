@@ -8,6 +8,7 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
+// Color maps created with http://mcg.mbitson.com/#!?mcgpalette0=%233f51b5
 $mat-myapp-primary: (
   50: #f0e1e8,
   100: #dab5c6,
@@ -109,4 +110,5 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  min-height: 100vh;
 }
