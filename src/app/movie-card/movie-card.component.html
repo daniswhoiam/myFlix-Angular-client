@@ -1,11 +1,11 @@
-<div style="display: flex;">
-  <mat-card *ngFor="let movie of movies; let i=index;" style="flex: 1 1 auto;">
-    <mat-card-header>
-      <mat-card-title>{{movie.Title}}</mat-card-title>
-      <mat-card-subtitle>Directed by: {{movie.Director.Name}}</mat-card-subtitle>
+<div class="cards-container">
+  <mat-card *ngFor="let movie of movies; let i=index;" class="movie-card">
+    <mat-card-header class="movie-header">
+      <mat-card-title class="movie-title">{{movie.Title}}</mat-card-title>
+      <mat-card-subtitle class="movie-subtitle">Directed by: {{movie.Director.Name}}</mat-card-subtitle>
     </mat-card-header>
-    <img src={{movie.ImagePath}} alt={{movie.Title}} style="max-width: 100px;">
-    <mat-card-actions>
+    <img src={{movie.ImagePath}} alt={{movie.Title}} class="movie-image">
+    <mat-card-actions class="movie-actions">
       <button
         mat-button
         color="primary"
@@ -28,3 +28,4 @@
     </mat-card-actions>
   </mat-card>
 </div>
+<app-footer></app-footer>

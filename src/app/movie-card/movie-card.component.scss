@@ -1,0 +1,48 @@
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.movie-card {
+  max-width: 200px;
+  margin: 20px;
+  padding: 10;
+}
+
+.movie-header {
+  display: block;
+}
+
+.movie-title, .movie-subtitle {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.movie-image {
+  max-width: 150px;
+  max-height: 180px;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 10px auto;
+}
+
+.movie-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 10px;
+}
+
+.movie-actions * {
+  justify-self: center;
+  align-self: center;
+}
+
+.movie-actions button {
+  min-width: 100%;
+  border: 1px solid grey;
+}
