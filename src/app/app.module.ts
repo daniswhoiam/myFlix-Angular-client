@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +16,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 // Custom components
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
@@ -23,6 +26,7 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { FooterComponent } from './footer/footer.component';
+import { NavHeaderComponent } from './nav-header/nav-header.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -38,6 +42,7 @@ const appRoutes: Routes = [
     MovieCardComponent,
     WelcomePageComponent,
     FooterComponent,
+    NavHeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +58,10 @@ const appRoutes: Routes = [
     MatIconModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
+    FlexLayoutModule,
+    MatToolbarModule,
+    MatListModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent],
