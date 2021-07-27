@@ -1,22 +1,23 @@
-<mat-toolbar color="primary" class="nav-header">
+<mat-toolbar fxLayoutAlign="space-between center" class="nav-header">
   <div class="logo-container">
-
+    <a routerLink="/movies">
+      <img src="../../assets/img/full_logo_small.png" alt="myFlix Logo" class="nav-logo">
+    </a>
   </div>
   <div fxShow="true" fxHide.lt-md="true">
     <!-- The following menu items will be hidden on both SM and XS screen sizes -->
-    <a href="" mat-button>Movies</a>
-    <a href="" mat-button>Profile</a>
+    <a routerLink="/movies" mat-button>Movies</a>
+    <a routerLink="/profile" mat-button>Profile</a>
+    <button mat-flat-button color="primary" (click)="logOutUser()">Logout</button>
   </div>
-  <div fxShow="true" fxHide.gt-sm="true">
-    <a href="#">Show Side Menu</a>
-  </div>
+  <button mat-icon-button [matMenuTriggerFor]="dropMenu" fxHide="true" fxShow.lt-md="true">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #dropMenu="matMenu">
+    <a routerLink="/movies" mat-button>Movies</a>
+    <mat-divider></mat-divider>
+    <a routerLink="/profile" mat-button>Profile</a>
+    <mat-divider></mat-divider>
+    <button mat-button (click)="logOutUser()">Logout</button>
+  </mat-menu>
 </mat-toolbar>
-<mat-sidenav-container fxFlexFill class="sidenav-container">
-  <mat-sidenav #sidenav fxLayout="column">
-    <div fxLayout="column">
-      <a href="" mat-button>Movies</a>
-      <a href="" mat-button>Profile</a>
-    </div>
-  </mat-sidenav>
-  <mat-sidenav-content fxFlexFill>Main content</mat-sidenav-content>
-</mat-sidenav-container>

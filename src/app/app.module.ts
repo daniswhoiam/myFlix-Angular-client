@@ -19,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatMenuModule } from '@angular/material/menu';
 
 // Custom components
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
@@ -61,7 +62,8 @@ const appRoutes: Routes = [
     FlexLayoutModule,
     MatToolbarModule,
     MatListModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent],

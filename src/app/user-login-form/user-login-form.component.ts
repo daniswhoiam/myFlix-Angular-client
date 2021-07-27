@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 
 // To close dialog on success
 import { MatDialogRef } from '@angular/material/dialog';
@@ -12,6 +12,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 // For routing
 import { Router } from '@angular/router';
 
+import { MainService } from '../main.service';
+
 @Component({
   selector: 'app-user-login-form',
   templateUrl: './user-login-form.component.html',
@@ -24,7 +26,8 @@ export class UserLoginFormComponent implements OnInit {
     public apiCall: UserLoginService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
     public snackBar: MatSnackBar,
-    public router: Router
+    public router: Router,
+    public mainService: MainService
   ) {}
 
   ngOnInit(): void {}
@@ -34,6 +37,8 @@ export class UserLoginFormComponent implements OnInit {
       (result) => {
         localStorage.setItem('user', JSON.stringify(result.user));
         localStorage.setItem('token', result.token);
+        this.mainService.setLoggedIn(true);
+        this.mainService.loginStateOnChange.next(this.mainService.isLoggedin());
         this.dialogRef.close();
         this.snackBar.open('Your login was successful!', 'OK', {
           duration: 2000,
