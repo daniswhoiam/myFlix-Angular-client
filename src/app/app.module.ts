@@ -28,10 +28,12 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavHeaderComponent } from './nav-header/nav-header.component';
+import { ProfileViewComponent } from './profile-view/profile-view.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
+  { path: 'profile', component: ProfileViewComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
 ];
 
@@ -44,6 +46,7 @@ const appRoutes: Routes = [
     WelcomePageComponent,
     FooterComponent,
     NavHeaderComponent,
+    ProfileViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,7 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatListModule,
     MatSidenavModule,
-    MatMenuModule
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

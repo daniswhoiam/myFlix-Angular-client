@@ -1,0 +1,66 @@
+<div
+  class="profile-view"
+  gdAreas="profile form"
+  gdRows="auto"
+  gdColumns="40% 60%"
+  gdAreas.lt-sm="profile | form"
+  gdRows.lt-sm="auto auto"
+  gdColumns.lt-sm="auto"
+>
+  <div
+    class="user-information"
+    gdArea="profile"
+    fxLayout="column"
+    fxLayoutAlign="center flex-start"
+    fxLayoutGap="30px"
+  >
+    <h2>Your Profile</h2>
+    <h3>Your Username</h3>
+    <p>{{ user?.Username }}</p>
+    <h3>Your E-Mail</h3>
+    <p>{{ user?.Email }}</p>
+    <!-- TODO Birthday? -->
+  </div>
+  <div class="user-form" gdArea="form">
+    <h2>Update Your Profile</h2>
+    <form
+      fxLayout="column"
+      fxLayoutAlign="center flex-start"
+      fxLayoutGap="30px"
+    >
+      <mat-form-field>
+        <input
+          matInput
+          [(ngModel)]="userData.Username"
+          placeholder="Username"
+          type="text"
+          name="Username"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          [(ngModel)]="userData.Password"
+          type="password"
+          placeholder="Password"
+          name="Password"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          [(ngModel)]="userData.Email"
+          type="email"
+          placeholder="Email"
+          name="Email"
+        />
+      </mat-form-field>
+      <button mat-raised-button (click)="changeUserData()" color="primary">
+        Update
+      </button>
+      <button mat-raised-button (click)="deleteUser()" color="accent">
+        Delete Account
+      </button>
+    </form>
+  </div>
+</div>

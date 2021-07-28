@@ -168,9 +168,9 @@ export class DeleteFavoriteMovieService extends BasicService {
   providedIn: 'root',
 })
 export class UpdateUserService extends BasicService {
-  public updateUser(userDetails: any): Observable<any> {
+  public updateUser(oldUserDetails: any, newUserDetails: any): Observable<any> {
     return this.http
-      .put(apiUrl + 'users/' + userDetails.username, userDetails, {
+      .put(apiUrl + 'users/' + oldUserDetails.Username, newUserDetails, {
         headers: this.getAuthHeader(),
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
