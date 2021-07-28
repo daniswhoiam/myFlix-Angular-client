@@ -24,7 +24,8 @@
       >
         Synopsis
       </button>
-      <mat-icon>favorite_border</mat-icon>
+      <mat-icon *ngIf="!userFavoriteMovies.includes(movie._id)" (click)="toggleFavoriteMovie(movie._id)">favorite_border</mat-icon>
+      <mat-icon *ngIf="userFavoriteMovies.includes(movie._id)" (click)="toggleFavoriteMovie(movie._id)">favorite_fill</mat-icon>
     </mat-card-actions>
   </mat-card>
 </div>
