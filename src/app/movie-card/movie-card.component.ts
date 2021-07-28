@@ -77,6 +77,7 @@ export class MovieCardComponent implements OnInit {
     this.userFavoriteMovies = this.getUser().FavoriteMovies || [''];
   }
 
+  // Solution inspired by https://github.com/angular/components/issues/10459, comment by arlowhite
   showDetailsModal(templateRef: any, selector: string, movie: any): void {
     switch (selector) {
       case 'Genre':
