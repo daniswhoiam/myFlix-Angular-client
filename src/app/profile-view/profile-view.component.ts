@@ -18,7 +18,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./profile-view.component.scss'],
 })
 export class ProfileViewComponent implements OnInit {
-  @Input() userData = { Username: '', Password: '', Email: '' };
+  @Input() userData = { Username: '', Password: '', Email: '', Birth: '' };
 
   constructor(
     public updateApi: UpdateUserService,
@@ -40,7 +40,7 @@ export class ProfileViewComponent implements OnInit {
       (result) => {
         localStorage.setItem('user', JSON.stringify(result));
         this.user = result;
-        this.userData = { Username: '', Password: '', Email: '' };
+        this.userData = { Username: '', Password: '', Email: '', Birth: '' };
         this.snackBar.open('Your data has been successfully updated!', 'OK', {
           duration: 2000,
         });

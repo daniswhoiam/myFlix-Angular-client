@@ -105,7 +105,7 @@ $myFlix-Angular-client-theme: mat.define-light-theme(
 /* You can add global styles to this file, and also import other style files */
 
 html,
-body {
+body, app-root {
   height: 100%;
 }
 body, app-root {
@@ -114,4 +114,5 @@ body, app-root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
