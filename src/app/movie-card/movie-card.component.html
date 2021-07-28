@@ -9,18 +9,21 @@
       <button
         mat-button
         color="primary"
+        (click)="showDetailsModal(template,'Genre', movie)"
       >
         Genre
       </button>
       <button
         mat-button
         color="primary"
+        (click)="showDetailsModal(template,'Director', movie)"
       >
         Director
       </button>
       <button
         mat-button
         color="primary"
+        (click)="showDetailsModal(template, 'Synopsis', movie)"
       >
         Synopsis
       </button>
@@ -28,5 +31,14 @@
       <mat-icon *ngIf="userFavoriteMovies.includes(movie._id)" (click)="toggleFavoriteMovie(movie._id)">favorite_fill</mat-icon>
     </mat-card-actions>
   </mat-card>
+  <ng-template #template let-data>
+    <h1>{{data.heading}}</h1>
+    <h2>{{data.name}}</h2>
+    <p>{{data.text}}</p>
+    <p *ngIf="data.birth">Birth: {{data.birth | date:'longDate'}}</p>
+    <p *ngIf="data.death">Death: {{data.death | date:'longDate'}}</p>
+    <p *ngIf="data.release">Year of Release: {{data.release}}</p>
+    <p *ngIf="data.rating">Rating: {{data.rating}}</p>
+  </ng-template>
 </div>
 <app-footer></app-footer>

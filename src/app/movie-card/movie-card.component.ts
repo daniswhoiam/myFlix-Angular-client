@@ -5,6 +5,7 @@ import {
   DeleteFavoriteMovieService,
 } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-movie-card',
@@ -18,7 +19,8 @@ export class MovieCardComponent implements OnInit {
     public getMoviesApi: GetAllMoviesService,
     public addFavoriteMovieApi: AddFavoriteMovieService,
     public deleteFavoriteMovieApi: DeleteFavoriteMovieService,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public modal: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -73,5 +75,45 @@ export class MovieCardComponent implements OnInit {
     localStorage.setItem('user', JSON.stringify(result));
     this.user = this.getUser();
     this.userFavoriteMovies = this.getUser().FavoriteMovies || [''];
+  }
+
+  showDetailsModal(templateRef: any, selector: string, movie: any): void {
+    switch (selector) {
+      case 'Genre':
+        this.modal.open(templateRef, {
+          width: '300px',
+          data: {
+            heading: selector,
+            name: movie.Genre.Name,
+            text: movie.Genre.Description,
+          },
+        });
+        return;
+      case 'Director':
+        this.modal.open(templateRef, {
+          width: '300px',
+          data: {
+            heading: selector,
+            name: movie.Director.Name,
+            text: movie.Director.Bio,
+            birth: movie.Director.Birth,
+            death: movie.Director.Death,
+          },
+        });
+        return;
+      case 'Synopsis': {
+        this.modal.open(templateRef, {
+          width: '300px',
+          data: {
+            heading: selector,
+            name: movie.Title,
+            text: movie.Description,
+            release: movie.ReleaseYear,
+            rating: movie.Rating
+          },
+        });
+        return;
+      }
+    }
   }
 }
