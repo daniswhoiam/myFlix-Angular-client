@@ -2,3 +2,6 @@ package.json
 package-lock.json
 dist
 karma.conf.js
+**/*.spec.ts
+**/*.*.spec.ts
+node_modules

@@ -7,30 +7,36 @@ import { MovieCardComponent } from '../movie-card/movie-card.component';
 @Component({
   selector: 'app-welcome-page',
   templateUrl: './welcome-page.component.html',
-  styleUrls: ['./welcome-page.component.scss'],
+  styleUrls: ['./welcome-page.component.scss']
 })
+/**
+ * First page that the user sees. Displays login and registration forms.
+ */
 export class WelcomePageComponent implements OnInit {
+  /**
+   * Constructor for the welcome page
+   * @param dialog Allows to show dialogs
+   */
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
-  // This is the function that will open the dialog when the signup button is clicked
+  /**
+   * Opens registration modal upon click on button
+   */
   openUserRegistrationDialog(): void {
     this.dialog.open(UserRegistrationFormComponent, {
       // Assigning the dialog a width
-      width: '280px',
-    });
-  }
-  // This function will open the login dialog
-  openUserLoginDialog(): void {
-    this.dialog.open(UserLoginFormComponent, {
-      width: '280px',
+      width: '280px'
     });
   }
 
-  openMoviesDialog(): void {
-    this.dialog.open(MovieCardComponent, {
-      width: '500px',
+  /**
+   * Opens login modal upon click on button
+   */
+  openUserLoginDialog(): void {
+    this.dialog.open(UserLoginFormComponent, {
+      width: '280px'
     });
   }
 }

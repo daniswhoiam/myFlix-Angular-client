@@ -17,11 +17,22 @@ import { MainService } from '../main.service';
 @Component({
   selector: 'app-user-login-form',
   templateUrl: './user-login-form.component.html',
-  styleUrls: ['./user-login-form.component.scss'],
+  styleUrls: ['./user-login-form.component.scss']
 })
+/**
+ * Displays the login form on the welcome page
+ */
 export class UserLoginFormComponent implements OnInit {
   @Input() loginData = { Username: '', Password: '' };
 
+  /**
+   * Constructor for the login modal class
+   * @param apiCall Allows to log-in the user
+   * @param dialogRef References the dialog (modal) component
+   * @param snackBar Display system messages
+   * @param router ALlow redirect
+   * @param mainService For tracking the user's login-status
+   */
   constructor(
     public apiCall: UserLoginService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
@@ -32,6 +43,9 @@ export class UserLoginFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  /**
+   * Function that logs in the user via the API and redirects the user to the movies page.
+   */
   loginUser(): void {
     this.apiCall.userLogin(this.loginData).subscribe(
       (result) => {
@@ -41,13 +55,13 @@ export class UserLoginFormComponent implements OnInit {
         this.mainService.loginStateOnChange.next(this.mainService.isLoggedin());
         this.dialogRef.close();
         this.snackBar.open('Your login was successful!', 'OK', {
-          duration: 2000,
+          duration: 2000
         });
         this.router.navigate(['movies']);
       },
       (result) => {
         this.snackBar.open(result, 'OK', {
-          duration: 2000,
+          duration: 2000
         });
       }
     );
