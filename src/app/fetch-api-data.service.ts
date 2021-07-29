@@ -140,7 +140,7 @@ export class AddFavoriteMovieService extends BasicService {
   public addFavoriteMovie(username: string, movieId: string): Observable<any> {
     return this.http
       .patch(
-        apiUrl + 'users/' + username + 'movies/' + movieId,
+        apiUrl + 'users/' + username + '/movies/' + movieId,
         {},
         { headers: this.getAuthHeader() }
       )
@@ -157,7 +157,7 @@ export class DeleteFavoriteMovieService extends BasicService {
     movieId: string
   ): Observable<any> {
     return this.http
-      .delete(apiUrl + 'users/' + username + 'movies/' + movieId, {
+      .delete(apiUrl + 'users/' + username + '/movies/' + movieId, {
         headers: this.getAuthHeader(),
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
@@ -168,9 +168,9 @@ export class DeleteFavoriteMovieService extends BasicService {
   providedIn: 'root',
 })
 export class UpdateUserService extends BasicService {
-  public updateUser(userDetails: any): Observable<any> {
+  public updateUser(oldUserDetails: any, newUserDetails: any): Observable<any> {
     return this.http
-      .put(apiUrl + 'users/' + userDetails.username, userDetails, {
+      .put(apiUrl + 'users/' + oldUserDetails.Username, newUserDetails, {
         headers: this.getAuthHeader(),
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));

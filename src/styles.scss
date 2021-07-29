@@ -1,4 +1,3 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '~@angular/material' as mat;
@@ -9,24 +8,94 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
+
+// Color maps created with http://mcg.mbitson.com/#!?mcgpalette0=%233f51b5
+$mat-myapp-primary: (
+  50: #f0e1e8,
+  100: #dab5c6,
+  200: #c283a1,
+  300: #aa517b,
+  400: #972c5e,
+  500: #850742,
+  600: #7d063c,
+  700: #720533,
+  800: #68042b,
+  900: #55021d,
+  A100: #ff87a5,
+  A200: #ff547e,
+  A400: #ff2158,
+  A700: #ff0845,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #ffffff,
+    A700: #ffffff,
+  ),
+);
+
+$mat-myapp-accent: (
+  50: #f0e1e1,
+  100: #dab5b5,
+  200: #c28483,
+  300: #aa5351,
+  400: #972e2c,
+  500: #850907,
+  600: #7d0806,
+  700: #720605,
+  800: #680504,
+  900: #550202,
+  A100: #ff8787,
+  A200: #ff5454,
+  A400: #ff2121,
+  A700: #ff0808,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #ffffff,
+    A700: #ffffff,
+  ),
+);
+
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$myFlix-Angular-client-primary: mat.define-palette(mat.$indigo-palette);
-$myFlix-Angular-client-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$myFlix-Angular-client-primary: mat.define-palette($mat-myapp-primary);
+$myFlix-Angular-client-accent: mat.define-palette($mat-myapp-accent);
 
 // The warn palette is optional (defaults to red).
 $myFlix-Angular-client-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$myFlix-Angular-client-theme: mat.define-light-theme((
-  color: (
-    primary: $myFlix-Angular-client-primary,
-    accent: $myFlix-Angular-client-accent,
-    warn: $myFlix-Angular-client-warn,
+$myFlix-Angular-client-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $myFlix-Angular-client-primary,
+      accent: $myFlix-Angular-client-accent,
+      warn: $myFlix-Angular-client-warn,
+    ),
   )
-));
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -35,5 +104,15 @@ $myFlix-Angular-client-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body, app-root {
+  height: 100%;
+}
+body, app-root {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
