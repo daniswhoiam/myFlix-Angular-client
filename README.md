@@ -1,6 +1,14 @@
 # MyFlixAngularClient
 
+This is the code for the Angular version of the client-side for the myFlix application, for which the necessary backend code (i.e. an API) was written in another repo ('movies_api').
+
+## Used technology
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.2.
+
+## Installation
+
+Clone the code to your preferred environment and run `npm install` to install all necessary dependencies.
 
 ## Development server
 
